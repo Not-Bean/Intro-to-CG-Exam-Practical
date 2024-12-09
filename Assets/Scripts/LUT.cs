@@ -4,15 +4,17 @@ using UnityEngine;
 
 public class LUT : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public Material lutMaterial;
 
-    // Update is called once per frame
-    void Update()
+    void OnRenderImage(RenderTexture source, RenderTexture destination)
     {
-        
+        if (lutMaterial != null)
+        {
+            Graphics.Blit(source, destination, lutMaterial);
+        }
+        else
+        {
+            Graphics.Blit(source, destination);
+        }
     }
 }
