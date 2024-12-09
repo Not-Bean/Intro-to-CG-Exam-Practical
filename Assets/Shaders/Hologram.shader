@@ -30,7 +30,8 @@ Shader "Custom/Hologram"
         void surf (Input IN, inout SurfaceOutput o)
         {
             half rim = dot (normalize(IN.viewDir), o.Normal);
-            o.Emission = _RimColor.rgb * rim;
+            float customTuning = (_RimPower * rim)*2;
+            o.Emission = _RimColor.rgb * rim * customTuning;
             o.Alpha = pow(rim, _RimPower);
         }
         ENDCG
